@@ -2,7 +2,8 @@ import React from 'react';
 import { goToPokedex, goBack, goToHome } from '../Router/coordinator';
 import { useHistory } from 'react-router';
 import icon from '../img/icon.png'
-
+import pokemon from '../img/pokemon.webp'
+import { HomeIcon, Button, ContainerHeader} from '../Style/StyleHeader'
 
 function Header() {
     const history = useHistory()
@@ -12,14 +13,16 @@ function Header() {
             case '/':
                 return (
                     <div>
-                        <button onClick={() => goToPokedex(history)}>Ver pokédex</button>
+
+                        <Button onClick={() => goToPokedex(history)}>Ver Pokedex</Button>
+
                     </div>
                 )
 
             default:
                 return (
                     <div>
-                        <button onClick={() => goBack(history)}>Voltar</button>
+                        <Button onClick={() => goBack(history)}>Voltar</Button>
                     </div>
                 )
         }
@@ -27,12 +30,13 @@ function Header() {
     }
 
     return (
-        <div>
+        <ContainerHeader>
 
-            <img src={icon} onClick={() => goToHome(history)}></img>
+            <HomeIcon src={icon} onClick={() => goToHome(history)}></HomeIcon>
+            <HomeIcon pokemon src={pokemon}></HomeIcon>
             {buttonNav()}
 
-        </div>
+        </ContainerHeader>
     )
 }
 
