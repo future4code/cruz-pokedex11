@@ -1,3 +1,4 @@
+import Home from './Pages/Home';
 import Router from './Router/Router';
 
 function App() {

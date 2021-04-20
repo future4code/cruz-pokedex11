@@ -1,20 +1,15 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import { Home,
-//     Details,
-//     Pokedex,
-//     Error
-// } from "../Pages/";
 import Details from '../Pages/Details'
 import Home from '../Pages/Home'
 import Error from '../Pages/Error'
 import Pokedex from '../Pages/Pokedex'
-import Header from '../Components/Header'
+import Header from '../components/Header'
 
 function Router() {
     return (
         <BrowserRouter>
             <Switch>
-                <Header />
+                {/* <Header /> */}
                 <Route exact path='/'>
                     <Home />
                 </Route>

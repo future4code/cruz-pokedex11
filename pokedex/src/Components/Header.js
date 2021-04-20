@@ -5,35 +5,35 @@ import icon from '../img/icon.png'
 
 
 function Header() {
-    const history = useHistory()
+  const history = useHistory()
 
-    const buttonNav = () => {
-        switch (history.location.pathname) {
-            case '/':
-                return (
-                    <div>
-                        <button onClick={() => goToPokedex(history)}>Ver pokédex</button>
-                    </div>
-                )
+  const buttonNav = () => {
+    switch (history.location.pathname) {
+      case '/':
+        return (
+          <div>
+            <button onClick={() => goToPokedex(history)}>Ver pokédex</button>
+          </div>
+        )
 
-            default:
-                return (
-                    <div>
-                        <button onClick={() => goBack(history)}>Voltar</button>
-                    </div>
-                )
-        }
-
+      default:
+        return (
+          <div>
+            <button onClick={() => goBack(history)}>Voltar</button>
+          </div>
+        )
     }
 
-    return (
-        <div>
+  }
 
-            <img src={icon} onClick={() => goToHome(history)}></img>
-            {buttonNav()}
+  return (
+    <div>
 
-        </div>
-    )
+      <img src={icon} onClick={() => goToHome(history)}></img>
+      {buttonNav()}
+
+    </div>
+  )
 }
 
 export default Header
