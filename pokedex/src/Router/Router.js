@@ -12,18 +12,21 @@ import Header from '../Components/Header'
 
 function Router() {
     return (
+
         <BrowserRouter>
             <Switch>
-                <Header />
-                <Route exact path='/'>
+                <Route exact path='/' >
+                    <Header />
                     <Home />
                 </Route>
 
                 <Route exact path='/pokedex'>
+                    <Header />
                     <Pokedex />
                 </Route>
 
                 <Route exact path='/details/:id'>
+                    <Header />
                     <Details />
                 </Route>
 
@@ -33,6 +36,7 @@ function Router() {
 
             </Switch>
         </BrowserRouter>
+
     )
 }
 

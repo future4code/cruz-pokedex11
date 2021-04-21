@@ -3,9 +3,9 @@ import { goToPokedex, goBack, goToHome } from '../Router/coordinator';
 import { useHistory } from 'react-router';
 import icon from '../img/icon.png'
 import pokemon from '../img/pokemon.webp'
-import { HomeIcon, Button, ContainerHeader} from '../Style/StyleHeader'
+import { HomeIcon, Button, ContainerHeader} from '../Style/Style'
 
-function Header() {
+export function Header() {
     const history = useHistory()
 
     const buttonNav = () => {
