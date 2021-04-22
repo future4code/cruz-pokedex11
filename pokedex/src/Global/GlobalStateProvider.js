@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../Constants/url";
 import GlobalStateContext from "./GlobalStateContext";
-import { goToDetails } from '../Router/coordinator'
 
 const GlobalStateProvider = (props) => {
     const [pokemons, setPokemons] = useState([])
     const [pokedex, setPokedex] = useState([])
     const [page, setPage] = useState(1)
-
+    const [pageChange, setPageChange] = useState(0)
+    
     useEffect(() => {
         getPokemons()
-    }, [])
+    }, [pageChange])
 
     const getPokemons = async () => {
         try {
-            const res = await axios.get(`${baseUrl}/?offset${page}&limit=30`)
+            const res = await axios.get(`${baseUrl}/?offset=${pageChange}&limit=30`)
             setPokemons(res.data.results);
         } catch (err) {
             alert("Nao foi possível carregar a lista de pokémons, tente novamente mais tarde")
@@ -54,8 +54,8 @@ const GlobalStateProvider = (props) => {
 
     };
 
-    const states = { pokemons, pokedex, page };
-    const setters = { setPokemons, setPokedex, setPage };
+    const states = { pageChange, pokemons, pokedex, page };
+    const setters = { setPageChange, setPokemons, setPokedex, setPage };
     const requests = { getPokemons, addPokedex, removePokedex };
 
     const data = { states, setters, requests };

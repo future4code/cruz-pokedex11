@@ -16,7 +16,6 @@ export const CardHome = (props) => {
         try {
             const res = await axios.get(`${baseUrl}/${props.name}/`)
             setPokemonData(res.data)
-            console.log(res.data)
         } catch (err) {
             alert("Ops!  Não foi possivel carregar a lista de pokemons")
         }

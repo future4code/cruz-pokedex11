@@ -25,16 +25,9 @@ export function Home() {
 
     const handleChange = (e, value) => {
         setters.setPage(value)
+        setters.setPageChange(states.page * 30)
+        console.log(states.pageChange)
     }
-
-    const nextPage = (e) => {
-        setters.setPage(states.page + 1)
-    }
-
-    const prevPage = (e) => {
-        setters.setPage(states.page - 1)
-    }
-
     
     return (
         <div>
@@ -55,8 +48,6 @@ export function Home() {
                 variant="outlined"
                 color="primary"
                 page={states.page}
-                hideNextButton={nextPage}
-                hidePrevButton={prevPage}
                 onChange={handleChange}
             />
         </div>
