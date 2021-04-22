@@ -49,7 +49,7 @@ const GlobalStateProvider = (props) => {
 
             alert(`${poke.name} foi removido da pokédex!`)
         } else {
-            alert(`${poke.name} não pertence a sua pokedex.`)
+            alert(`${poke.name} não pertence a sua pokédex.`)
         }
 
     };

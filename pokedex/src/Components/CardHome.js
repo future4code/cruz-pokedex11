@@ -1,36 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { baseUrl } from "../Constants/url";
+import { useHistory } from 'react-router';
 import GlobalStateContext from '../Global/GlobalStateContext'
+import { goToDetails } from '../Router/coordinator'
+import { usePokemonData } from '../hook/usePokemonData';
 
 export const CardHome = (props) => {
     const { requests } = useContext(GlobalStateContext)
-    const [pokemonData, setPokemonData] = useState()
-
-    useEffect(() => {
-        getPokemonData()
-    }, [])
-
-
-    const getPokemonData = async () => {
-        try {
-            const res = await axios.get(`${baseUrl}/${props.name}/`)
-            setPokemonData(res.data)
-        } catch (err) {
-            alert("Ops!  Não foi possivel carregar a lista de pokemons")
-        }
-    }
+    const history = useHistory()
+    const [pokeData] = usePokemonData(props.name)
 
     return (
         <div>
-            {pokemonData &&
+            {pokeData &&
                 <div>
-                    <img src={pokemonData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokemonData.name} />
-                    <h2>{pokemonData.name}</h2>
-                    <p>{pokemonData.types[0] && <p>{pokemonData.types[0].type.name}</p>}</p>
+                    <img src={pokeData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokeData.name} />
+                    <h2>{pokeData.name}</h2>
+                    <p>{pokeData.types[0] && <p>{pokeData.types[0].type.name}</p>}</p>
                     <div>
-                        <button onClick={() => requests.addPokedex(pokemonData)}>Adicionar</button>
-                        <button onClick={() => requests.pokemonDetails(pokemonData)}>Ver detalhes</button>
+                        <button onClick={() => requests.addPokedex(pokeData)}>Adicionar</button>
+                        <button onClick={() => goToDetails(history, pokeData.name)}>Ver detalhes</button>
                     </div>
                 </div>
             }

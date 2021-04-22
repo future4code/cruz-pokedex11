@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CardHome from '../Components/CardHome';
 import Pagination from '@material-ui/lab/Pagination';
 import GlobalStateContext from '../Global/GlobalStateContext'
@@ -26,7 +26,6 @@ export function Home() {
     const handleChange = (e, value) => {
         setters.setPage(value)
         setters.setPageChange(states.page * 30)
-        console.log(states.pageChange)
     }
     
     return (

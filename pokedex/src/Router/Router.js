@@ -25,10 +25,20 @@ function Router() {
                     <Pokedex />
                 </Route>
 
-                <Route exact path='/details/:id'>
+                <Route exact path='/details/:pokeName'>
                     <Header />
                     <Details />
                 </Route>
+
+                <Route exact path='/pokedex/details/:pokeName'>
+                    <Header />
+                    <Details />
+                </Route>
+
+                {/* <Route exact path='/pokedex/details/:pokeName'>
+                    <Header />
+                    <Details />
+                </Route> */}
 
                 <Route>
                     <Error />
