@@ -22,6 +22,7 @@ const GlobalStateProvider = (props) => {
         };
     };
 
+    
 
     const addPokedex = (poke) => {
         const onPokedex = pokedex.some((pokemonPokedex) => {

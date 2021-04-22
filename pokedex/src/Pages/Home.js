@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import CardHome from '../Components/CardHome';
+import CardHome from '../components/CardHome';
 import Pagination from '@material-ui/lab/Pagination';
 import GlobalStateContext from '../Global/GlobalStateContext'
-
+import { Main } from '../Style/HomeStyles'
 
 export function Home() {
     const { states, setters, requests } = useContext(GlobalStateContext)
@@ -14,7 +14,7 @@ export function Home() {
     let arrayPokemons = states.pokemons && states.pokemons.filter((pokemon) => {
         const onPokedex = states.pokedex && states.pokedex.some((pokemonPokedex) => {
             return pokemonPokedex.name === pokemon.name
-        })    
+        })
         if (onPokedex) {
             return false
         } else {
@@ -22,27 +22,28 @@ export function Home() {
         }
     })
 
-
     const handleChange = (e, value) => {
         setters.setPage(value)
         setters.setPageChange(states.page * 30)
-        console.log(states.pageChange)
     }
-    
+
     return (
         <div>
-            { states.pokemons.length === 0 ? <p>Carreganodoo...</p> : (
-               arrayPokemons && arrayPokemons.map((poke) => {
-                    return (
-                        <CardHome
-                            key={poke.name} 
-                            name={poke.name}
-                        />
-                    )
+            <Main>
+                {states.pokemons.length === 0 ? <p>Carregandoo...</p> : (
+                    arrayPokemons && arrayPokemons.map((poke) => {
+                        return (
+                            <CardHome
+                                key={poke.name}
+                                name={poke.name}
+                            />
+                        )
 
-                })
-            )
-            }
+                    })
+                )
+                }
+
+            </Main>
             <Pagination
                 count={35}
                 variant="outlined"
@@ -50,8 +51,7 @@ export function Home() {
                 page={states.page}
                 onChange={handleChange}
             />
-        </div>
-
+        </div >
     )
 }
 
