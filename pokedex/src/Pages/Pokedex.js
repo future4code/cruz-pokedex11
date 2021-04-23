@@ -3,6 +3,7 @@ import Card from "../Components/Card"
 import GlobalStateContext from '../Global/GlobalStateContext'
 import { Main } from '../Style/PokedexStyles'
 import Loading from '../Components/Loading'
+import ScreenWithoutPokemons from "../Components/ScreenWithoutPokemons"
 
 export function Pokedex() {
     const { states } = useContext(GlobalStateContext)
@@ -17,9 +18,19 @@ export function Pokedex() {
         />
 
     })
+    const pokemonsList = () => {
+        if(states.pokedex.length === 0){
+            return <ScreenWithoutPokemons />
+        }else if (!states.pokedex){
+            return <Loading />
+        } else {
+            return pokemons
+        }
+    }
+    console.log(states.pokedex)
     return (
         <Main>
-            {states.pokedex.length === 0 ? <Loading /> : pokemons}
+            {pokemonsList()}
         </Main>
     )
 
