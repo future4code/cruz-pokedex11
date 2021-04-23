@@ -11,29 +11,12 @@ import { usePokemonData } from '../hook/usePokemonData';
 
 export const CardHome = (props) => {
     const { requests } = useContext(GlobalStateContext)
-    const [pokemonData, setPokemonData] = useState()
     const [type, setType] = useState('')
     const history = useHistory()
     const [pokeData] = usePokemonData(props.name)
 
-    useEffect(() => {
-        getPokemonData()
-    }, [])
-
-
-    const getPokemonData = async () => {
-        try {
-            const res = await axios.get(`${baseUrl}/${props.name}/`)
-            setPokemonData(res.data)
-        } catch (err) {
-            alert("Ops!  Não foi possivel carregar a lista de pokemons")
-        }
-    }
-
-
-
     const colorPokemon = () => {
-        switch (pokemonData.types[0] && pokemonData.types[0].type.name) {
+        switch (pokeData.types[0] && pokeData.types[0].type.name) {
             case 'grass':
                 setType('planta')
                 return 'rgb(43, 218, 177)'
@@ -94,28 +77,28 @@ export const CardHome = (props) => {
     }
 
     const numberPokemon = () => {
-        if (pokemonData && pokemonData.id > 0 && pokemonData.id < 10) {
-            return '#00' + pokemonData.id
-        } else if (pokemonData && pokemonData.id > 10 && pokemonData.id < 100) {
-            return '#0' + pokemonData.id
+        if (pokeData && pokeData.id > 0 && pokeData.id < 10) {
+            return '#00' + pokeData.id
+        } else if (pokeData && pokeData.id > 10 && pokeData.id < 100) {
+            return '#0' + pokeData.id
         } else {
-            return '#' + pokemonData.id
+            return '#' + pokeData.id
         }
     }
     return (
         <div >
-            {pokemonData &&
-                <Card backgroundColor={colorPokemon} onClick={() => requests.pokemonDetails(pokemonData)}>
-                    <Name>{pokemonData.name[0].toUpperCase() + pokemonData.name.substr(1)}</Name>
+            {pokeData &&
+                <Card backgroundColor={colorPokemon} onClick={() => goToDetails(history, pokeData.name)}>
+                    <Name>{pokeData.name[0].toUpperCase() + pokeData.name.substr(1)}</Name>
                     <Number>{numberPokemon()}</Number>
                     <ContainerType>
                         {type}
                     </ContainerType>
-                    <Button title="Capturar pokemon">
+                    <Button onClick={() => requests.addPokedex(pokeData)} title="Capturar pokemon">
                         <ButtonImage src={addToPokedex} alt={'botão para adicionar à pokédex'} />
                     </Button>
                     <ContainerImage>
-                        <PokemonImage src={pokemonData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokemonData.name} />
+                        <PokemonImage src={pokeData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokeData.name} />
                     </ContainerImage>
                     <PokeballImage src={pokeBall} alt={'pokebola branca'} />
                 </Card>
