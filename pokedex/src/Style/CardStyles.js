@@ -6,7 +6,6 @@ export const CardContainer = styled.div`
   padding: .8rem;
   border-radius: 10px;
   color: white;
-  cursor: pointer;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
