@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import CardPokedex from "../components/CardPokedex"
+import CardPokedex from "../Components/CardPokedex"
 import GlobalStateContext from '../Global/GlobalStateContext'
 
 export function Pokedex() {

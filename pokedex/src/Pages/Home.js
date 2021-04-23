@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import CardHome from '../components/CardHome';
+import CardHome from '../Components/CardHome';
 import Pagination from '@material-ui/lab/Pagination';
 import GlobalStateContext from '../Global/GlobalStateContext'
 import { Main, ContainerPagination } from '../Style/HomeStyles'

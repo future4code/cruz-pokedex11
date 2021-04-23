@@ -3,7 +3,7 @@ import Details from '../Pages/Details'
 import Home from '../Pages/Home'
 import Error from '../Pages/Error'
 import Pokedex from '../Pages/Pokedex'
-import Header from '../components/Header'
+import Header from '../Components/Header'
 import Battle from '../Pages/Battle'
 
 
