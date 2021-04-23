@@ -1,17 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { baseUrl } from "../Constants/url";
+import React, { useContext, useState, useEffect } from "react";
+import axios from 'axios'
+import {baseUrl} from '../Constants/url'
+import { useHistory } from 'react-router';
 import GlobalStateContext from '../Global/GlobalStateContext'
 import pokeBall from '../img/pokeball-white.png'
 import addToPokedex from '../img/addToPokedex.png'
 import { Card, Name, Number, PokemonImage, PokeballImage, ContainerImage, Type, ContainerType, ButtonImage, Button } from '../Style/CardHomeStyles'
-
+import { goToDetails } from '../Router/coordinator'
+import { usePokemonData } from '../hook/usePokemonData';
 
 export const CardHome = (props) => {
     const { requests } = useContext(GlobalStateContext)
     const [pokemonData, setPokemonData] = useState()
     const [type, setType] = useState('')
-
+    const history = useHistory()
+    const [pokeData] = usePokemonData(props.name)
 
     useEffect(() => {
         getPokemonData()
@@ -26,6 +29,8 @@ export const CardHome = (props) => {
             alert("Ops!  Não foi possivel carregar a lista de pokemons")
         }
     }
+
+
 
     const colorPokemon = () => {
         switch (pokemonData.types[0] && pokemonData.types[0].type.name) {

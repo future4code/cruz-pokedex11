@@ -1,14 +1,11 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import { Home,
-//     Details,
-//     Pokedex,
-//     Error
-// } from "../Pages/";
 import Details from '../Pages/Details'
 import Home from '../Pages/Home'
 import Error from '../Pages/Error'
 import Pokedex from '../Pages/Pokedex'
 import Header from '../components/Header'
+import Battle from '../Pages/Battle'
+
 
 function Router() {
     return (
@@ -25,9 +22,19 @@ function Router() {
                     <Pokedex />
                 </Route>
 
-                <Route exact path='/details/:id'>
+                <Route exact path='/details/:pokeName'>
                     <Header />
                     <Details />
+                </Route>
+
+                <Route exact path='/pokedex/details/:pokeName'>
+                    <Header />
+                    <Details />
+                </Route>
+
+                <Route exact path='/battle/:pokeName'>
+                    <Header />
+                    <Battle />
                 </Route>
 
                 <Route>

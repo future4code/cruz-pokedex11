@@ -1,23 +1,23 @@
 import { useParams } from 'react-router-dom';
-import CardDetails from '../Components/CardDetails';
+import BattleActions from '../Components/BattleActions';
 import { usePokemonData } from '../hook/usePokemonData';
 
-function Details() {
+function Battle() {
     const pathParams = useParams();
     const pokeName = pathParams.pokeName
     const [pokeData] = usePokemonData(pokeName)
 
-    return (
-        <div>
-            { !pokeData ? <p>Carreganodoo...</p> : (
-
-                <CardDetails
+return (
+    <div>
+        { !pokeData ? <p>Carreganodoo...</p> : (
+            <div>
+                <BattleActions
                     pokemon={pokeData}
                 />
-
-            )}
-        </div>
-    )
+            </div>
+        )}
+    </div>
+)
 
 }
-export default Details
+export default Battle
