@@ -8,10 +8,14 @@ const GlobalStateProvider = (props) => {
     const [pokedex, setPokedex] = useState([])
     const [page, setPage] = useState(1)
     const [pageChange, setPageChange] = useState(0)
+    const [moves, setMoves] = useState()
+    const [pokemonChoiced, setPokemonChoiced] = useState('')
     
     useEffect(() => {
         getPokemons()
-    }, [pageChange])
+        getMoves()
+        pokemon()
+    }, [pageChange, pokedex])
 
     const getPokemons = async () => {
         try {
@@ -22,11 +26,22 @@ const GlobalStateProvider = (props) => {
         };
     };
 
+    const getMoves = async () => {
+        if (pokemonChoiced) {
+            try {
+                const res = await axios.get(`${baseUrl}/${pokemonChoiced}`)
+                setMoves(res.data);
+            } catch (err) {
+                alert("Nao foi possível carregar a lista de pokémons, tente novamente mais tarde")
+            };
+        }
+    };
+
 
     const addPokedex = (poke) => {
         const onPokedex = pokedex.some((pokemonPokedex) => {
             return pokemonPokedex.name === poke.name
-        })    
+        })
         if (!onPokedex) {
             const newPokedex = [...pokedex, poke]
             setPokedex(newPokedex)
@@ -39,7 +54,7 @@ const GlobalStateProvider = (props) => {
     const removePokedex = (poke) => {
         const onPokedex = pokedex.some((pokemonPokedex) => {
             return pokemonPokedex.name === poke.name
-        })    
+        })
         if (onPokedex) {
             const indexPokemon = pokedex.findIndex((pokemon) => pokemon.name === poke.name);
             const newPokeList = [...pokemons, poke]
@@ -49,14 +64,19 @@ const GlobalStateProvider = (props) => {
 
             alert(`${poke.name} foi removido da pokédex!`)
         } else {
-            alert(`${poke.name} não pertence a sua pokedex.`)
+            alert(`${poke.name} não pertence a sua pokédex.`)
         }
 
     };
 
-    const states = { pageChange, pokemons, pokedex, page };
+    const pokemon = () => {
+        let pokemon = Math.floor(Math.random() * 700)
+         setPokemonChoiced(pokemon)
+     }
+
+    const states = { moves, pokemonChoiced, pageChange, pokemons, pokedex, page };
     const setters = { setPageChange, setPokemons, setPokedex, setPage };
-    const requests = { getPokemons, addPokedex, removePokedex };
+    const requests = { pokemon, getPokemons, addPokedex, removePokedex };
 
     const data = { states, setters, requests };
 

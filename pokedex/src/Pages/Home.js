@@ -26,7 +26,6 @@ export function Home() {
     const handleChange = (e, value) => {
         setters.setPage(value)
         setters.setPageChange(states.page * 30)
-        console.log(states.pageChange)
     }
     
     return (
