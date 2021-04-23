@@ -1,19 +1,39 @@
 import React, { useContext, useState, useEffect } from "react";
+import GlobalStateContext from '../Global/GlobalStateContext'
+import { useHistory } from 'react-router';
+import { goToDetails } from '../Router/coordinator'
 import axios from 'axios'
 import { baseUrl } from '../Constants/url'
-import { useHistory } from 'react-router';
-import GlobalStateContext from '../Global/GlobalStateContext'
 import pokeBall from '../img/pokeball-white.png'
 import addToPokedex from '../img/addToPokedex.png'
-import { Card, Name, Number, PokemonImage, PokeballImage, ContainerImage, Type, ContainerType, ButtonImage, Button } from '../Style/CardHomeStyles'
-import { goToDetails } from '../Router/coordinator'
-import { usePokemonData } from '../hook/usePokemonData';
+import removeToPokedex from '../img/removeToPokedex.png'
+import details from '../img/details.png'
 
-export const CardHome = (props) => {
+
+import { CardContainer, Name, Number, PokemonImage, PokeballImage, ContainerImage, ContainerType, ButtonGroup, ButtonImage, Button } from '../Style/CardStyles'
+import { usePokemonData } from '../hook/usePokemonData'
+
+function Card(props) {
     const { requests } = useContext(GlobalStateContext)
-    const [type, setType] = useState('')
     const history = useHistory()
+    const [pokemonData, setPokemonData] = useState()
+    const [type, setType] = useState('')
     const [pokeData] = usePokemonData(props.name)
+
+    useEffect(() => {
+        getPokemonData()
+    }, [])
+
+
+    const getPokemonData = async () => {
+        try {
+            const res = await axios.get(`${baseUrl}/${props.name}/`)
+            setPokemonData(res.data)
+        } catch (err) {
+            alert("Ops!  Não foi possivel carregar a lista de pokemons")
+        }
+    }
+
 
     const colorPokemon = () => {
         switch (pokeData.types[0] && pokeData.types[0].type.name) {
@@ -85,27 +105,50 @@ export const CardHome = (props) => {
             return '#' + pokeData.id
         }
     }
+
+    const button = () => {
+        if (history.location.pathname === '/') {
+            return <ButtonGroup>
+                <Button onClick={() => requests.addPokedex(pokeData)} title="Capturar pokemon">
+                    <ButtonImage src={addToPokedex} alt={'botão para adicionar à pokédex'} />
+                </Button>
+
+                <Button onClick={() => goToDetails(history, pokeData.name)} title="Detalhes do pokemon">
+                    <ButtonImage src={details} alt={'botão para ver detalhes'} />
+                </Button>
+            </ButtonGroup>
+
+        } else {
+            return <ButtonGroup>
+                <Button onClick={() => requests.removePokedex(pokeData)} title="Remover da pokédex">
+                    <ButtonImage src={removeToPokedex} alt={'botão para adicionar à pokédex'} />
+                </Button>
+                
+                <Button onClick={() => goToDetails(history, pokeData.name)} title="Detalhes do pokemon">
+                    <ButtonImage src={details} alt={'botão para ver detalhes '} />
+                </Button>
+            </ButtonGroup>
+        }
+    }
     return (
         <div >
             {pokeData &&
-                <Card backgroundColor={colorPokemon} onClick={() => goToDetails(history, pokeData.name)}>
+                <CardContainer backgroundColor={colorPokemon} >
                     <Name>{pokeData.name[0].toUpperCase() + pokeData.name.substr(1)}</Name>
                     <Number>{numberPokemon()}</Number>
                     <ContainerType>
                         {type}
                     </ContainerType>
-                    <Button onClick={() => requests.addPokedex(pokeData)} title="Capturar pokemon">
-                        <ButtonImage src={addToPokedex} alt={'botão para adicionar à pokédex'} />
-                    </Button>
+                    {button()}
                     <ContainerImage>
                         <PokemonImage src={pokeData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokeData.name} />
                     </ContainerImage>
                     <PokeballImage src={pokeBall} alt={'pokebola branca'} />
-                </Card>
+                </CardContainer>
             }
         </div>
-    )
 
+    )
 }
 
-export default CardHome
+export default Card
