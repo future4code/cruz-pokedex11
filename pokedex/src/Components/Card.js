@@ -35,7 +35,7 @@ function Card(props) {
 
 
     const colorPokemon = () => {
-        switch (pokemonData.types[0] && pokemonData.types[0].type.name) {
+        switch (pokeData.types[0] && pokeData.types[0].type.name) {
             case 'grass':
                 setType('planta')
                 return 'rgb(43, 218, 177)'
@@ -96,12 +96,12 @@ function Card(props) {
     }
 
     const numberPokemon = () => {
-        if (pokemonData && pokemonData.id > 0 && pokemonData.id < 10) {
-            return '#00' + pokemonData.id
-        } else if (pokemonData && pokemonData.id > 10 && pokemonData.id < 100) {
-            return '#0' + pokemonData.id
+        if (pokeData && pokeData.id > 0 && pokeData.id < 10) {
+            return '#00' + pokeData.id
+        } else if (pokeData && pokeData.id > 10 && pokeData.id < 100) {
+            return '#0' + pokeData.id
         } else {
-            return '#' + pokemonData.id
+            return '#' + pokeData.id
         }
     }
 
@@ -131,16 +131,16 @@ function Card(props) {
     }
     return (
         <div >
-            {pokemonData &&
-                <CardContainer backgroundColor={colorPokemon} >
-                    <Name>{pokemonData.name[0].toUpperCase() + pokemonData.name.substr(1)}</Name>
+            {pokeData &&
+                <CardContainer backgroundColor={colorPokemon} onClick={() => goToDetails(history, pokeData.name)}>
+                    <Name>{pokeData.name[0].toUpperCase() + pokeData.name.substr(1)}</Name>
                     <Number>{numberPokemon()}</Number>
                     <ContainerType>
                         {type}
                     </ContainerType>
                     {button()}
                     <ContainerImage>
-                        <PokemonImage src={pokemonData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokemonData.name} />
+                        <PokemonImage src={pokeData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokeData.name} />
                     </ContainerImage>
                     <PokeballImage src={pokeBall} alt={'pokebola branca'} />
                 </CardContainer>
