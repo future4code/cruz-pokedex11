@@ -49,7 +49,7 @@ export const CardHome = (props) => {
                 return 'rgb(148, 140, 181)'
             case 'electric':
                 setType('elétrico')
-                return 'rgb(255, 211, 62)'
+                return 'rgb(248, 189, 33)'
             case 'ground':
                 setType('terra')
                 return 'rgb(178, 115, 108)'
