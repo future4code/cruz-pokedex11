@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const Card = styled.div`
-  background: rgb(43, 218, 177);
+  background: ${(props) => props.backgroundColor};
   padding: .8rem;
   border-radius: 10px;
   color: white;
@@ -28,7 +28,7 @@ export const Number = styled.p `
   margin: 0;
   font-weight: 500;
   font-size: 1rem;
-  color: gray;
+  color: black;
   opacity: .5;
   text-align: right;
   padding: .5rem;

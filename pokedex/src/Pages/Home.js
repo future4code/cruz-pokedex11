@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import CardHome from '../components/CardHome';
 import Pagination from '@material-ui/lab/Pagination';
 import GlobalStateContext from '../Global/GlobalStateContext'
-import { Main } from '../Style/HomeStyles'
+import { Main, ContainerPagination } from '../Style/HomeStyles'
 
 export function Home() {
     const { states, setters, requests } = useContext(GlobalStateContext)
@@ -44,13 +44,15 @@ export function Home() {
                 }
 
             </Main>
-            <Pagination
-                count={35}
-                variant="outlined"
-                color="primary"
-                page={states.page}
-                onChange={handleChange}
-            />
+            <ContainerPagination>
+                <Pagination
+                    count={35}
+                    variant="outlined"
+                    color="primary"
+                    page={states.page}
+                    onChange={handleChange}
+                />
+            </ContainerPagination>
         </div >
     )
 }

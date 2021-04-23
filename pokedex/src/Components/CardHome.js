@@ -10,11 +10,11 @@ import { Card, Name, Number, PokemonImage, PokeballImage, ContainerImage, Type, 
 export const CardHome = (props) => {
     const { requests } = useContext(GlobalStateContext)
     const [pokemonData, setPokemonData] = useState()
-    // const [pokemonColor, setPokemonColor] = useState({})
+    const [type, setType] = useState('')
+
 
     useEffect(() => {
         getPokemonData()
-        // getColorPokemon()
     }, [])
 
 
@@ -27,14 +27,66 @@ export const CardHome = (props) => {
         }
     }
 
-    // const getColorPokemon = async () => {
-    //     try{
-    //         const res = await axios.get(`${baseUrl}/pokemon-color/${props.name}/`)
-    //         setPokemonColor(res)
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // }
+    const colorPokemon = () => {
+        switch (pokemonData.types[0] && pokemonData.types[0].type.name) {
+            case 'grass':
+                setType('planta')
+                return 'rgb(43, 218, 177)'
+            case 'fire':
+                setType('fogo')
+                return 'rgb(247, 119, 106)'
+            case 'water':
+                setType('água')
+                return 'rgb(88, 171, 247)'
+            case 'bug':
+                setType('Inseto')
+                return 'rgb(140, 200, 104)'
+            case 'normal':
+                setType('normal')
+                return 'rgb(204, 150, 86)'
+            case 'poison':
+                setType('venenoso')
+                return 'rgb(148, 140, 181)'
+            case 'electric':
+                setType('elétrico')
+                return 'rgb(255, 211, 62)'
+            case 'ground':
+                setType('terra')
+                return 'rgb(178, 115, 108)'
+            case 'fighting':
+                setType('lutador')
+                return 'rgb(21, 33, 59)'
+            case 'psychic':
+                setType('psíquico')
+                return 'rgb(240, 181, 53)'
+            case 'rock':
+                setType('pedra')
+                return 'rgb(191, 192, 203)'
+            case 'flying':
+                setType('voador')
+                return 'rgb(218, 147, 190)'
+            case 'ghost':
+                setType('fantasma')
+                return 'rgb(137, 87, 122)'
+            case 'ice':
+                setType('gelo')
+                return 'rgb(122, 185, 226)'
+            case 'dragon':
+                setType('dragão')
+                return 'rgb(48, 173, 155)'
+            case 'steel':
+                setType('metálico')
+                return 'rgb(159, 165, 181)'
+            case 'dark':
+                setType('noturno')
+                return 'rgb(32, 28, 27)'
+            case 'fairy':
+                setType('fada')
+                return 'rgb(229, 160, 224)'
+            default:
+                break;
+        }
+    }
 
     const numberPokemon = () => {
         if (pokemonData && pokemonData.id > 0 && pokemonData.id < 10) {
@@ -48,24 +100,19 @@ export const CardHome = (props) => {
     return (
         <div onClick={() => requests.pokemonDetails(pokemonData)}>
             {pokemonData &&
-                <Card>
+                <Card backgroundColor={colorPokemon}>
                     <Name>{pokemonData.name[0].toUpperCase() + pokemonData.name.substr(1)}</Name>
                     <Number>{numberPokemon()}</Number>
                     <ContainerType>
-                        {pokemonData.types[0] && <Type>{pokemonData.types[0].type.name}</Type>}
+                        {type}
                     </ContainerType>
-                    <Button>
+                    <Button title="Capturar pokemon">
                         <ButtonImage src={addToPokedex} alt={'botão para adicionar à pokédex'} />
                     </Button>
                     <ContainerImage>
                         <PokemonImage src={pokemonData.sprites.versions['generation-v']['black-white'].animated.front_default} alt={pokemonData.name} />
                     </ContainerImage>
                     <PokeballImage src={pokeBall} alt={'pokebola branca'} />
-
-                    {/* <ButtonGroup>
-                        <button onClick={() => requests.addPokedex(pokemonData)}>Adicionar</button>
-                        <button >Ver detalhes</button>
-                    </ButtonGroup> */}
                 </Card>
             }
         </div>
