@@ -2,7 +2,7 @@ import loadingGif from '../img/pokeball_gif.gif'
 import styled from 'styled-components'
 
 const Container = styled.div `
-  width: 100%;
+  width: 100vw;
   height: 80vh;
   display: flex;
   align-items: center;
