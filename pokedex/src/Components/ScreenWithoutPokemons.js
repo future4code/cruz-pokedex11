@@ -1,13 +1,17 @@
-import pikachu from '../img/pikachu.jfif'
+import pokeballs from '../img/pokeballs.png'
 import styled from 'styled-components'
 
 const Container = styled.main`
-  width: 100vw;
-  height: 80vh;
+  width: 90vw;
+  height: 78vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+
+const Image = styled.img `
+  width: 20%;
 `
 
 const Messages = styled.p `
@@ -24,7 +28,7 @@ const SubTitle = styled(Messages) `
 
 function ScreenWithoutPokemons() {
   return <Container>
-    <img src={pikachu} alt={'pikachu em cima da pokebola'} />
+    <Image src={pokeballs} alt={'pikachu em cima da pokebola'} />
     <Title>Ops! Pokédex vazia</Title>
     <SubTitle>Pokemons tem que pegar!</SubTitle>
   </Container>
