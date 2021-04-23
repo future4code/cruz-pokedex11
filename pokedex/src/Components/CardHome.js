@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from 'react-router';
 import GlobalStateContext from '../Global/GlobalStateContext'
 import { goToDetails } from '../Router/coordinator'

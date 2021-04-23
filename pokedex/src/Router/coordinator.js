@@ -14,6 +14,10 @@ export const goToPokedex = (history) => {
     history.push('/pokedex')
 }
 
+export const goToFight = (history, pokeName) => {
+    history.push(`/battle/${pokeName}`)
+}
+
 export const goBack = (history) => {
     history.goBack()
 }

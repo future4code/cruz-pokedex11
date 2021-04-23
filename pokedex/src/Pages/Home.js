@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import CardHome from '../Components/CardHome';
 import Pagination from '@material-ui/lab/Pagination';
 import GlobalStateContext from '../Global/GlobalStateContext'

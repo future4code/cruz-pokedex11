@@ -3,7 +3,7 @@ import CardPokedex from "../Components/CardPokedex"
 import GlobalStateContext from '../Global/GlobalStateContext'
 
 export function Pokedex() {
-    const { states, requests } = useContext(GlobalStateContext)
+    const { states } = useContext(GlobalStateContext)
 
     return (
         <div>

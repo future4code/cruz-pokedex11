@@ -17,7 +17,7 @@ export const usePokemonData = (pokeName) => {
 
   useEffect(() => {
     getPokemonData()
-  }, [pokeData])
+  }, [])
 
   return [pokeData, getPokemonData]
 }

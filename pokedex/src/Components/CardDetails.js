@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import GlobalStateContext from '../Global/GlobalStateContext';
 import { useHistory } from 'react-router';
-import { useEffect } from 'react';
+import {goToFight} from '../Router/coordinator'
 
 export const CardDetails = (props) => {
     const { requests } = useContext(GlobalStateContext);
@@ -11,7 +11,7 @@ export const CardDetails = (props) => {
     const button = () => {
         if (history.location.pathname === `/pokedex/details/${pokemon.name}`) {
             return <div>
-                <button>Batalhar!</button>
+                <button onClick={() => goToFight(history, pokemon.name)}>Batalhar!</button>
                 <button onClick={() => requests.removePokedex(pokemon)}>Remover da pokédex</button>
             </div>
         } else {

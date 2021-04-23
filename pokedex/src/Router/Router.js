@@ -8,6 +8,7 @@ import Details from '../Pages/Details'
 import Home from '../Pages/Home'
 import Error from '../Pages/Error'
 import Pokedex from '../Pages/Pokedex'
+import Battle from '../Pages/Battle'
 import Header from '../Components/Header'
 
 function Router() {
@@ -35,10 +36,10 @@ function Router() {
                     <Details />
                 </Route>
 
-                {/* <Route exact path='/pokedex/details/:pokeName'>
+                <Route exact path='/battle/:pokeName'>
                     <Header />
-                    <Details />
-                </Route> */}
+                    <Battle />
+                </Route>
 
                 <Route>
                     <Error />
