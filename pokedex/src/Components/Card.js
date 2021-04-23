@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import GlobalStateContext from '../Global/GlobalStateContext'
 import { useHistory } from 'react-router';
-import { goToDetailsPokedex } from '../Router/coordinator'
+import { goToDetails } from '../Router/coordinator'
 import axios from 'axios'
 import { baseUrl } from '../Constants/url'
 import pokeBall from '../img/pokeball-white.png'
 import addToPokedex from '../img/addToPokedex.png'
 import removeToPokedex from '../img/removeToPokedex.png'
 import details from '../img/details.png'
+
 
 import { CardContainer, Name, Number, PokemonImage, PokeballImage, ContainerImage, ContainerType, ButtonGroup, ButtonImage, Button } from '../Style/CardStyles'
 import { usePokemonData } from '../hook/usePokemonData'
@@ -112,7 +113,7 @@ function Card(props) {
                     <ButtonImage src={addToPokedex} alt={'botão para adicionar à pokédex'} />
                 </Button>
 
-                <Button onClick={() => requests.pokemonDetails(pokemonData)} title="Detalhes do pokemon">
+                <Button onClick={() => goToDetails(history, pokeData.name)} title="Detalhes do pokemon">
                     <ButtonImage src={details} alt={'botão para ver detalhes'} />
                 </Button>
             </ButtonGroup>
@@ -123,8 +124,8 @@ function Card(props) {
                     <ButtonImage src={removeToPokedex} alt={'botão para adicionar à pokédex'} />
                 </Button>
                 
-                <Button onClick={() => requests.pokemonDetails(pokemonData)} title="Detalhes do pokemon">
-                    <ButtonImage src={details} alt={'botão para ver detalhes'} />
+                <Button onClick={() => goToDetails(history, pokeData.name)} title="Detalhes do pokemon">
+                    <ButtonImage src={details} alt={'botão para ver detalhes '} />
                 </Button>
             </ButtonGroup>
         }
@@ -132,7 +133,7 @@ function Card(props) {
     return (
         <div >
             {pokeData &&
-                <CardContainer backgroundColor={colorPokemon} onClick={() => goToDetails(history, pokeData.name)}>
+                <CardContainer backgroundColor={colorPokemon} >
                     <Name>{pokeData.name[0].toUpperCase() + pokeData.name.substr(1)}</Name>
                     <Number>{numberPokemon()}</Number>
                     <ContainerType>
