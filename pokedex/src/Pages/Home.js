@@ -3,6 +3,7 @@ import CardHome from '../Components/CardHome';
 import Pagination from '@material-ui/lab/Pagination';
 import GlobalStateContext from '../Global/GlobalStateContext'
 import { Main, ContainerPagination } from '../Style/HomeStyles'
+import Loading from "../Components/Loading";
 
 export function Home() {
     const { states, setters, requests } = useContext(GlobalStateContext)
@@ -30,7 +31,7 @@ export function Home() {
     return (
         <div>
             <Main>
-                {states.pokemons.length === 0 ? <p>Carregandoo...</p> : (
+                {states.pokemons.length === 0 ? <Loading /> : (
                     arrayPokemons && arrayPokemons.map((poke) => {
                         return (
                             <CardHome

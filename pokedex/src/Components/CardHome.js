@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios'
-import {baseUrl} from '../Constants/url'
+import { baseUrl } from '../Constants/url'
 import { useHistory } from 'react-router';
 import GlobalStateContext from '../Global/GlobalStateContext'
 import pokeBall from '../img/pokeball-white.png'
@@ -103,9 +103,9 @@ export const CardHome = (props) => {
         }
     }
     return (
-        <div onClick={() => requests.pokemonDetails(pokemonData)}>
+        <div >
             {pokemonData &&
-                <Card backgroundColor={colorPokemon}>
+                <Card backgroundColor={colorPokemon} onClick={() => requests.pokemonDetails(pokemonData)}>
                     <Name>{pokemonData.name[0].toUpperCase() + pokemonData.name.substr(1)}</Name>
                     <Number>{numberPokemon()}</Number>
                     <ContainerType>
