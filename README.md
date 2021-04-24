@@ -5,6 +5,16 @@
 ### Link do Surge:  
 www.link.com.br 
 
+### Prints das telas
+- Home
+![image](https://user-images.githubusercontent.com/76170319/115942304-f699ab80-a47f-11eb-9a54-46ab00a61de0.png)
+
+- Pokédex
+![image](https://user-images.githubusercontent.com/76170319/115942328-129d4d00-a480-11eb-9a38-c14dd9d582e1.png)
+
+- Detalhes
+
+- Batalha
 
 ### O que funciona: 
 - Lista de pokémons (renderização, adição a pokédex e detalhes)
