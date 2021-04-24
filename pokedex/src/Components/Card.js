@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import GlobalStateContext from '../Global/GlobalStateContext'
 import { useHistory } from 'react-router';
-import { goToDetails } from '../Router/coordinator'
+import { goToDetails, goToDetailsPokedex } from '../Router/coordinator'
 import pokeBall from '../img/pokeball-white.png'
 import addToPokedex from '../img/addToPokedex.png'
 import removeToPokedex from '../img/removeToPokedex.png'
@@ -105,7 +105,7 @@ function Card(props) {
                     <ButtonImage src={removeToPokedex} alt={'botão para adicionar à pokédex'} />
                 </Button>
                 
-                <Button onClick={() => goToDetails(history, pokeData.name)} title="Detalhes do pokemon">
+                <Button onClick={() => goToDetailsPokedex(history, pokeData.name)} title="Detalhes do pokemon">
                     <ButtonImage src={details} alt={'botão para ver detalhes '} />
                 </Button>
             </ButtonGroup>
