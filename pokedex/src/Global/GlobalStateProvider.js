@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../Constants/url";
 import GlobalStateContext from "./GlobalStateContext";
+import CapturedPokemon from "../Components/CapturedPokemon";
 
 const GlobalStateProvider = (props) => {
     const [pokemons, setPokemons] = useState([])
@@ -10,7 +11,10 @@ const GlobalStateProvider = (props) => {
     const [pageChange, setPageChange] = useState(0)
     const [moves, setMoves] = useState()
     const [pokemonChoiced, setPokemonChoiced] = useState('')
-    
+    const [captured, setCaptured] = useState(false)
+    const [nameCaptured, setNameCaptured] = useState('')
+
+
     useEffect(() => {
         getPokemons()
         getMoves()
@@ -45,7 +49,9 @@ const GlobalStateProvider = (props) => {
         if (!onPokedex) {
             const newPokedex = [...pokedex, poke]
             setPokedex(newPokedex)
-            alert(`${poke.name} foi adicionado a pokédex!`)
+            // alert(`${poke.name} foi adicionado a pokédex!`)
+            setCaptured(true)
+            setNameCaptured(poke.name)
         } else {
             alert(`${poke.name} já consta em sua pokédex.`)
         }
@@ -71,18 +77,34 @@ const GlobalStateProvider = (props) => {
 
     const pokemon = () => {
         let pokemon = Math.floor(Math.random() * 700)
-         setPokemonChoiced(pokemon)
-     }
+        setPokemonChoiced(pokemon)
+    }
 
     const states = { moves, pokemonChoiced, pageChange, pokemons, pokedex, page };
     const setters = { setPageChange, setPokemons, setPokedex, setPage };
     const requests = { pokemon, getPokemons, addPokedex, removePokedex };
 
-    const data = { states, setters, requests };
+    const data = { states, setters, requests, captured };
 
+    const changeCaptured = () => {
+        setCaptured(!captured)
+    }
+
+    const screen = () => {
+        if (captured) {
+            return (
+                <CapturedPokemon
+                    name={nameCaptured}
+                    onClick={changeCaptured}
+                />
+            )
+
+        }
+    }
     return (
         <div>
             <GlobalStateContext.Provider value={data}>
+                {screen()}
                 {props.children}
             </GlobalStateContext.Provider>
         </div>

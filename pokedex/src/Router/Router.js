@@ -38,6 +38,7 @@ function Router() {
                 </Route>
 
                 <Route>
+                    <Header />
                     <Error />
                 </Route>
 
