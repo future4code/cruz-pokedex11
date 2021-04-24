@@ -1,6 +1,6 @@
 <p align='center'><img src='https://user-images.githubusercontent.com/77753437/115879372-f79af080-a41f-11eb-9d6b-58799c227e2c.png' width="50" /><img src='https://user-images.githubusercontent.com/77753437/115879375-f8cc1d80-a41f-11eb-875c-aac84312f0ac.png' width="50" /><img src='https://user-images.githubusercontent.com/77753437/115879378-f8cc1d80-a41f-11eb-8ba7-ca1756872043.png' width="50" /></p>
-<br /><br />
 <h1 align='center'>POKEDEX</h1>
+<br /><br />
 
 ### Link do Surge:  
 www.link.com.br 
