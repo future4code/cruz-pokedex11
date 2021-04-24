@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div `
     display: flex;
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
     align-items: center;
+    /* justify-content: center; */
     position: absolute;
     background-image: url(${(props) => props.background});
     background-size: cover;
@@ -15,9 +16,11 @@ export const Container = styled.div `
 export const Message = styled.p `
     font-weight: 800;
     margin: 0; 
-    font-size: 2rem;
+    font-size: 4rem;
     margin: 6rem;
+    width: 5rem;
 `
+
 export const Button = styled.button `
     background: none;
     border: none;
