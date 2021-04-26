@@ -23,7 +23,7 @@ export const Name = styled.p`
   margin: 0;
 `
 
-export const Number = styled.p `
+export const Number = styled.p`
   margin: 0;
   font-weight: 500;
   font-size: 1rem;
@@ -33,7 +33,7 @@ export const Number = styled.p `
   padding: .5rem;
 `
 
-export const ContainerType = styled.div `
+export const ContainerType = styled.div`
   font-size: 0.8rem;
   background: rgba(255, 255, 255, .2);
   display:flex;
@@ -44,14 +44,14 @@ export const ContainerType = styled.div `
   padding: .2rem;
 `
 
-export const ButtonGroup = styled.div `
+export const ButtonGroup = styled.div`
   display: flex;
   align-items: flex-end;
 
   grid-row: 3 / 4;
   grid-column: 1 / 3;
 `
-export const Button = styled.button `
+export const Button = styled.button`
   cursor: pointer;
 
   height: 2rem;
@@ -68,11 +68,11 @@ export const Button = styled.button `
   }
 `
 
-export const ButtonImage = styled.img `
+export const ButtonImage = styled.img`
   width: 2rem;
 `
 
-export const ContainerImage = styled.div `
+export const ContainerImage = styled.div`
   grid-column: 3 / 5;
   grid-row: 2 / 4;
 
@@ -81,14 +81,14 @@ export const ContainerImage = styled.div `
   justify-content: center;
 `
 
-export const PokemonImage = styled.img `
+export const PokemonImage = styled.img`
   width: 5rem;
   height:6rem;
   z-index: 10;
 
 `
 
-export const PokeballImage = styled.img `
+export const PokeballImage = styled.img`
   width: 8rem;
   position: absolute;
   margin: 2.5% 0 0 10%;
